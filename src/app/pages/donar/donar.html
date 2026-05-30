@@ -1,0 +1,262 @@
+<section class="hero hero-about">
+
+  <style>
+
+/* ===== GENERAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f7fb;
+  color: #111827;
+  text-align: center;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 50vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.55);
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 55px;
+  font-weight: 800;
+  margin-bottom: 10px;
+}
+
+.hero-content p {
+  font-size: 18px;
+  opacity: 0.95;
+  text-align: center;
+}
+
+/* ===== DONATION SECTION ===== */
+.donation {
+  background: #f5f7fb;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.donation-container {
+  width: 100%;
+  max-width: 750px;
+  background: white;
+  border-radius: 24px;
+  padding: 45px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+.donation-container h2 {
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 35px;
+}
+
+/* ===== AMOUNT BUTTONS ===== */
+.donation-amounts {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.amount-btn {
+  padding: 14px 24px;
+  border: none;
+  border-radius: 14px;
+  background: #f3f4f6;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.amount-btn:hover {
+  transform: translateY(-3px);
+  background: #e5e7eb;
+}
+
+.amount-btn.active {
+  background: #cc0000;
+  color: white;
+  transform: scale(1.08);
+  box-shadow: 0 8px 20px rgba(204,0,0,0.3);
+}
+
+/* ===== FORM ===== */
+.donation-form {
+  margin-top: 10px;
+}
+
+.info-text {
+  color: #6b7280;
+  margin-bottom: 15px;
+  font-size: 15px;
+}
+
+.donation-form input {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  border: 1px solid #e5e7eb;
+  font-size: 16px;
+  outline: none;
+  margin-bottom: 20px;
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.donation-form input:focus {
+  border-color: #cc0000;
+  background: white;
+  box-shadow: 0 0 0 4px rgba(204,0,0,0.12);
+}
+
+/* ===== BUTTON ===== */
+.btn {
+  width: 100%;
+  padding: 16px;
+  border-radius: 14px;
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.btn-red {
+  background: #cc0000;
+  color: white;
+  box-shadow: 0 8px 20px rgba(204,0,0,0.25);
+}
+
+.btn-red:hover {
+  background: #990000;
+  transform: translateY(-3px);
+}
+
+.btn-red:disabled {
+  background: #d1d5db;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .hero {
+    height: 40vh;
+  }
+
+  .hero-content h1 {
+    font-size: 38px;
+  }
+
+  .hero-content p {
+    font-size: 16px;
+  }
+
+  .donation-container {
+    padding: 30px 20px;
+  }
+
+  .donation-container h2 {
+    font-size: 28px;
+  }
+
+  .amount-btn {
+    width: 100%;
+  }
+}
+
+</style>
+  <img src="donacion.jpg" class="hero-img">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Haz tu Donación</h1>
+    <p>Pago seguro con verificación bancaria</p>
+  </div>
+</section>
+
+<section class="donation">
+  <div class="donation-container">
+
+    <h2>Selecciona una cantidad</h2>
+
+    <div class="donation-amounts">
+
+      @for (c of [1, 5, 10, 20, 50]; track c) {
+
+        <button 
+          type="button"
+          class="amount-btn"
+          [class.active]="cantidadSeleccionada === c"
+          (click)="seleccionar(c)">
+
+          {{ c }}€
+
+        </button>
+
+      }
+
+    </div>
+
+    <div class="donation-form">
+
+      <p class="info-text">
+        Indica la cantidad o selecciona un botón arriba
+      </p>
+
+      <input
+        type="number"
+        [(ngModel)]="cantidadSeleccionada"
+        placeholder="Cantidad en €"
+        min="1"
+        required>
+
+      <button
+        class="btn btn-red"
+        [disabled]="!cantidadSeleccionada || cargando"
+        (click)="pagar()">
+
+        {{ cargando ? 'Redirigiendo a Stripe...' : 'Pagar con tarjeta' }}
+
+      </button>
+
+    </div>
+
+  </div>
+</section>

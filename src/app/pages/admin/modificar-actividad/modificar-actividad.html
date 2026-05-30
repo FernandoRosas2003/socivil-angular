@@ -1,0 +1,268 @@
+<section class="admin-section">
+
+  <h2>Modificar Actividades</h2>
+
+  @if (exitoMsg) {
+    <p class="success-msg">{{ exitoMsg }}</p>
+  }
+
+  <!-- EDITOR -->
+  @if (editando) {
+    <div class="edit-card">
+
+      <h3>Editando: {{ editando.titulo }}</h3>
+
+      <input type="text" [(ngModel)]="editando.titulo" placeholder="Título" required>
+
+      <textarea [(ngModel)]="editando.descripcion" placeholder="Descripción" required></textarea>
+
+      <input type="date" [(ngModel)]="editando.fecha" required>
+
+      <input type="file" (change)="onImagen($event)">
+
+      <div class="edit-actions">
+        <button class="btn btn-green" (click)="guardar()">Guardar cambios</button>
+        <button class="btn btn-gray" (click)="editando = null">Cancelar</button>
+      </div>
+
+    </div>
+  }
+
+  <!-- LISTA ACTIVIDADES -->
+  @for (actividad of actividades; track actividad.id) {
+    <div class="activity-card">
+
+      <h3>{{ actividad.titulo }}</h3>
+
+      <p>{{ actividad.descripcion }}</p>
+
+      <p class="date">📅 {{ actividad.fecha }}</p>
+
+      <strong>Usuarios inscritos</strong>
+
+      @if (actividad.inscritos?.length > 0) {
+        <ul>
+          @for (u of actividad.inscritos; track u.id) {
+            <li>{{ u.nombre }} {{ u.apellido }} ({{ u.usuario }})</li>
+          }
+        </ul>
+      } @else {
+        <p>No hay usuarios inscritos.</p>
+      }
+
+      <div class="card-actions">
+        <button class="btn btn-red" (click)="editar(actividad)">
+          Editar
+        </button>
+
+        <button class="btn btn-dark" (click)="eliminar(actividad.id)">
+          Eliminar
+        </button>
+      </div>
+
+    </div>
+  } @empty {
+    <p class="empty">No hay actividades publicadas.</p>
+  }
+
+  <a routerLink="/admin" class="btn btn-red back-btn">Volver</a>
+
+</section>
+<style>
+
+/* ===== GENERAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f7fb;
+  color: #111827;
+  text-align: center;
+}
+
+/* ===== SECTION ===== */
+.admin-section {
+  padding: 80px 20px;
+  max-width: 1100px;
+  margin: auto;
+}
+
+.admin-section h2 {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+/* ===== SUCCESS ===== */
+.success-msg {
+  color: #16a34a;
+  font-weight: 700;
+  margin-bottom: 20px;
+}
+
+/* ===== EDIT CARD ===== */
+.edit-card {
+  background: white;
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  margin-bottom: 40px;
+  text-align: left;
+}
+
+.edit-card h3 {
+  margin-bottom: 20px;
+}
+
+/* inputs */
+.edit-card input,
+.edit-card textarea {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 15px;
+  outline: none;
+}
+
+.edit-card textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+/* ===== ACTIVITY CARD ===== */
+.activity-card {
+  background: white;
+  padding: 30px;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  margin-bottom: 25px;
+  text-align: left;
+}
+
+.activity-card h3 {
+  font-size: 22px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #cc0000;
+}
+
+.activity-card p {
+  margin-bottom: 10px;
+  color: #4b5563;
+}
+
+.date {
+  font-weight: 600;
+}
+
+/* lista */
+.activity-card ul {
+  margin-top: 10px;
+  margin-bottom: 15px;
+  padding-left: 20px;
+}
+
+.activity-card li {
+  margin-bottom: 5px;
+}
+
+/* ===== BUTTONS ===== */
+.btn {
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-red {
+  background: #cc0000;
+  color: white;
+}
+
+.btn-red:hover {
+  background: #990000;
+  transform: translateY(-3px);
+}
+
+.btn-green {
+  background: #16a34a;
+  color: white;
+}
+
+.btn-green:hover {
+  background: #15803d;
+  transform: translateY(-3px);
+}
+
+.btn-gray {
+  background: #6b7280;
+  color: white;
+}
+
+.btn-gray:hover {
+  background: #4b5563;
+  transform: translateY(-3px);
+}
+
+.btn-dark {
+  background: #111827;
+  color: white;
+}
+
+.btn-dark:hover {
+  background: #000;
+  transform: translateY(-3px);
+}
+
+/* ===== ACTIONS ===== */
+.edit-actions,
+.card-actions {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+  flex-wrap: wrap;
+}
+
+/* ===== EMPTY ===== */
+.empty {
+  font-weight: 700;
+  margin-top: 20px;
+  color: #6b7280;
+}
+
+/* ===== BACK BUTTON ===== */
+.back-btn {
+  margin-top: 30px;
+  display: inline-block;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .admin-section h2 {
+    font-size: 32px;
+  }
+
+  .edit-card,
+  .activity-card {
+    text-align: center;
+  }
+
+  .edit-actions,
+  .card-actions {
+    flex-direction: column;
+  }
+}
+
+</style>

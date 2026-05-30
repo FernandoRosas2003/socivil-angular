@@ -1,0 +1,432 @@
+<style>
+/* ===== GENERAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f7fb;
+  color: #111827;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  max-width: 850px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 65px;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 25px;
+}
+
+.hero-content p {
+  font-size: 20px;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+/* ===== CTA ===== */
+.cta {
+  background: linear-gradient(135deg, #cc0000, #990000);
+  color: white;
+  text-align: center;
+  padding: 90px 20px;
+}
+
+.cta h2 {
+  font-size: 46px;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.cta p {
+  font-size: 19px;
+  margin-bottom: 25px;
+  opacity: 0.95;
+}
+
+/* ===== SERVICES ===== */
+.services {
+  padding: 90px 20px;
+  text-align: center;
+  background: #f5f7fb;
+}
+
+.services h2 {
+  font-size: 42px;
+  margin-bottom: 20px;
+  font-weight: 800;
+}
+
+.services-desc {
+  max-width: 750px;
+  margin: auto;
+  margin-bottom: 55px;
+  color: #6b7280;
+  font-size: 18px;
+  line-height: 1.7;
+}
+
+/* ===== CARDS ===== */
+.service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: auto;
+}
+
+.card {
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  transition: all 0.3s ease;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
+
+.card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+}
+
+/* ===== SPINNER ===== */
+.image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 220px;
+  overflow: hidden;
+  border-radius: 10px 10px 0 0;
+  background: #f3f4f6;
+}
+
+.spinner {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 45px;
+  height: 45px;
+  margin-top: -22px;
+  margin-left: -22px;
+  border: 4px solid rgba(204, 0, 0, 0.2);
+  border-top: 4px solid #cc0000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+  z-index: 2;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.actividad-img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+  display: block;
+}
+
+/* ===== CONTENIDO ===== */
+.card h3 {
+  font-size: 22px;
+  margin: 18px 20px 10px;
+  color: #cc0000;
+  font-weight: 700;
+}
+
+.card p {
+  margin: 6px 20px;
+  color: #4b5563;
+  line-height: 1.6;
+  font-size: 15px;
+}
+
+/* ===== BOTONES ===== */
+.btn {
+  padding: 15px 28px;
+  border-radius: 14px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  display: inline-block;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-red {
+  background: #cc0000;
+  color: white;
+  box-shadow: 0 8px 20px rgba(204,0,0,0.25);
+  margin: 15px 20px 10px;
+}
+
+.btn-red:hover {
+  background: #990000;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 25px rgba(204,0,0,0.35);
+}
+
+.btn-voluntario {
+  background: white;
+  color: #cc0000;
+  font-weight: 700;
+  padding: 15px 28px;
+  border-radius: 14px;
+}
+
+.btn-voluntario:hover {
+  background: #f3f4f6;
+  transform: translateY(-3px);
+}
+
+/* ===== MENSAJE FLOTANTE ===== */
+.toast-message {
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: white;
+  padding: 15px 25px;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  z-index: 9999;
+  font-weight: bold;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .hero {
+    height: 85vh;
+  }
+
+  .hero-content h1 {
+    font-size: 42px;
+  }
+
+  .hero-content p {
+    font-size: 17px;
+  }
+
+  .services h2,
+  .cta h2 {
+    font-size: 34px;
+  }
+
+  .services-desc,
+  .cta p {
+    font-size: 16px;
+  }
+}
+</style>
+
+<section class="hero hero-about">
+  <img src="actividades.png" alt="Actividades" class="hero-img">
+
+  <div class="hero-overlay"></div>
+
+  <div class="hero-content">
+    <h1>Actividades</h1>
+    <p>Participa en nuestras actividades y ayuda a la comunidad</p>
+  </div>
+</section>
+
+<!-- 🔴 NO LOGUEADO -->
+@if (!auth.isLoggedIn()) {
+
+  <section class="cta" style="background:#f2f2f2;color:#333;">
+
+    <h2>Debes iniciar sesión para inscribirte</h2>
+
+    <p>
+      Únete a nuestra comunidad para participar como voluntario
+    </p>
+
+    <a
+      routerLink="/registro"
+      class="btn btn-voluntario"
+      style="margin-top:20px;display:inline-block;"
+    >
+      Registrarme ahora
+    </a>
+
+  </section>
+
+}
+
+<!-- 🟢 LOGUEADO -->
+@if (auth.isLoggedIn()) {
+
+  <section class="services">
+
+    <h2>Nuestras Actividades</h2>
+
+    <p class="services-desc">
+      Apúntate a nuestras actividades y ayuda a la comunidad
+    </p>
+
+    @if (actividades.length === 0) {
+
+      <p style="text-align:center;font-style:italic;margin-top:20px;">
+        No se encuentran actividades recientes.
+      </p>
+
+    } @else {
+
+      <div class="service-cards">
+
+        @for (actividad of actividades; track actividad.id) {
+
+          <div class="card">
+
+            @if (actividad.imagen_url) {
+
+              <div class="image-wrapper">
+
+                @if (actividad.cargandoImagen) {
+                  <div class="spinner"></div>
+                }
+
+                <img
+                  class="actividad-img"
+                  [src]="actividad.imagen_url"
+                  alt="Actividad"
+                  (load)="actividad.cargandoImagen = false"
+                >
+
+              </div>
+
+            }
+
+            <h3>{{ actividad.titulo }}</h3>
+
+            <p>{{ actividad.descripcion }}</p>
+
+            <p>Fecha: {{ actividad.fecha }}</p>
+
+            <p>
+              Plazas:
+              {{ actividad.plazas_ocupadas }}
+              /
+              {{ actividad.plazas_max }}
+            </p>
+
+            @if (auth.isAdmin()) {
+
+              <p style="color:gray;font-weight:bold;">
+                Los administradores no pueden apuntarse
+              </p>
+
+            } @else {
+
+              @if (actividad.ya_inscrito) {
+
+                <p style="color:green;font-weight:bold;">
+                  Ya estás apuntado ✔️
+                </p>
+
+              }
+
+              @if (!actividad.ya_inscrito) {
+
+                @if (actividad.plazas_ocupadas < actividad.plazas_max) {
+
+                  <button
+                    class="btn btn-red"
+                    (click)="apuntarse(actividad.id)"
+                  >
+                    Apuntarse
+                  </button>
+
+                } @else {
+
+                  <p style="color:red;font-weight:bold;">
+                    Completo
+                  </p>
+
+                }
+
+              }
+
+            }
+
+          </div>
+
+        }
+
+      </div>
+
+    }
+
+  </section>
+
+  <!-- ✅ MENSAJE ABAJO -->
+
+  @if (mensaje) {
+
+    <div class="toast-message">
+
+      @if (mensaje === 'inscrito') {
+
+        <span style="color:green;">
+          Te has apuntado correctamente ✅
+        </span>
+
+      }
+
+      @if (mensaje === 'ya_inscrito') {
+
+        <span style="color:#cc8800;">
+          Ya estás apuntado a esta actividad ⚠️
+        </span>
+
+      }
+
+      @if (mensaje === 'completo') {
+
+        <span style="color:red;">
+          La actividad está completa ❌
+        </span>
+
+      }
+
+    </div>
+
+  }
+
+}

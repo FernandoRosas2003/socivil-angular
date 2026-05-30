@@ -1,0 +1,139 @@
+<section class="services">
+  <h2>Eliminar Voluntarios</h2>
+
+  <div class="table-container">
+    <table>
+      <thead>
+        <tr>
+          <th>Usuario</th>
+          <th>Nombre</th>
+          <th>Email</th>
+          <th>Acción</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for (u of usuarios; track u.id) {
+          <tr>
+            <td>{{ u.usuario }}</td>
+            <td>{{ u.nombre }} {{ u.apellido }}</td>
+            <td>{{ u.email }}</td>
+            <td>
+              <button class="btn btn-red" (click)="eliminar(u.id)">
+                Eliminar
+              </button>
+            </td>
+          </tr>
+        }
+      </tbody>
+    </table>
+  </div>
+
+  <div class="back-container">
+    <a routerLink="/admin" class="btn btn-red">Volver</a>
+  </div>
+</section>
+
+<style>
+
+/* ===== GENERAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f7fb;
+  color: #111827;
+  text-align: center;
+}
+
+/* ===== SECTION ===== */
+.services {
+  padding: 80px 20px;
+  background: #f5f7fb;
+}
+
+.services h2 {
+  font-size: 42px;
+  font-weight: 800;
+  margin-bottom: 30px;
+}
+
+/* ===== TABLE WRAPPER ===== */
+.table-container {
+  max-width: 1100px;
+  margin: auto;
+  overflow-x: auto;
+  background: white;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+}
+
+/* ===== TABLE ===== */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 700px;
+}
+
+th {
+  padding: 16px;
+  background: #f3f4f6;
+  font-weight: 700;
+  color: #374151;
+}
+
+td {
+  padding: 16px;
+  border-bottom: 1px solid #eee;
+  color: #4b5563;
+}
+
+tr:hover {
+  background: #fafafa;
+}
+
+/* ===== BOTONES ===== */
+.btn {
+  padding: 12px 20px;
+  border-radius: 12px;
+  font-weight: 700;
+  font-size: 14px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  display: inline-block;
+}
+
+.btn-red {
+  background: #cc0000;
+  color: white;
+  box-shadow: 0 8px 20px rgba(204,0,0,0.2);
+}
+
+.btn-red:hover {
+  background: #990000;
+  transform: translateY(-3px);
+}
+
+/* ===== BACK BUTTON ===== */
+.back-container {
+  margin-top: 25px;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .services h2 {
+    font-size: 32px;
+  }
+
+  table {
+    min-width: 600px;
+  }
+}
+
+</style>

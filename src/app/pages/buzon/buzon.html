@@ -1,0 +1,119 @@
+<section class="mailbox-page">
+
+  <div class="mailbox-container">
+
+    <h2>📬 Mi Buzón</h2>
+    @if (anuncios.length > 0) {
+
+      @for (msg of anuncios; track msg.id) {
+
+        <div class="mail-item">
+
+          <h3>{{ msg.titulo }}</h3>
+
+          <p>{{ msg.descripcion }}</p>
+
+        </div>
+
+      }
+
+    } @else {
+
+      <div class="empty-box">
+        No tienes mensajes en el buzón.
+      </div>
+
+    }
+
+    <div class="back-container">
+
+      <button
+        class="btn-back"
+        routerLink="/perfil">
+
+        Volver al perfil
+
+      </button>
+
+    </div>
+
+  </div>
+
+</section>
+
+<style>
+.mailbox-page {
+  width: 100%;
+  min-height: 100vh;
+  background: #f4f7fb;
+  display: flex;
+  justify-content: center;
+  padding: 40px 20px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.mailbox-container {
+  width: 100%;
+  max-width: 850px;
+}
+
+.mailbox-container h2 {
+  margin-bottom: 25px;
+  color: #222;
+  font-size: 32px;
+}
+
+.mail-item {
+  background: white;
+  border: 1px solid #e5e7eb;
+  border-radius: 16px;
+  padding: 20px;
+  margin-bottom: 18px;
+  box-shadow: 0 5px 20px rgba(0,0,0,0.05);
+  transition: 0.3s;
+}
+
+.mail-item:hover {
+  transform: translateY(-3px);
+}
+
+.mail-item h3 {
+  margin: 0 0 10px 0;
+  color: #111;
+}
+
+.mail-item p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+.empty-box {
+  text-align: center;
+  padding: 40px;
+  background: #fff;
+  border-radius: 16px;
+  color: #777;
+}
+
+.back-container {
+  margin-top: 30px;
+  text-align: center;
+}
+
+.btn-back {
+  background: #cc0000;
+  color: white;
+  border: none;
+  padding: 14px 24px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.btn-back:hover {
+  background: #990000;
+}
+</style>

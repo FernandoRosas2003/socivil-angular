@@ -1,0 +1,254 @@
+<section class="hero">
+  <img src="fotoprincipal.png" alt="Voluntariado" class="hero-img">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Juntos Construimos una Sociedad Más Solidaria</h1>
+    <p>Socivil España es una ONG dedicada a proporcionar ayuda comunitaria a quienes más lo necesitan</p>
+    <div class="hero-buttons">
+      <a routerLink="/actividades" class="btn btn-red" style="margin-right: 5px;">Ver Nuestras Actividades →</a>
+      <a routerLink="/donar" class="btn btn-outline">Donar Ahora</a>
+    </div>
+  </div>
+</section>
+
+<section class="services">
+  <h2>Nuestros Servicios</h2>
+  <p class="services-desc">Trabajamos en múltiples áreas para proporcionar apoyo integral a las comunidades más vulnerables</p>
+  <div class="service-cards">
+    <div class="card"><h3>Lucha contra el Hambre</h3><p>Bancos de alimentos y comedores sociales para garantizar la alimentación básica.</p></div>
+    <div class="card"><h3>Primeros auxilios</h3><p>Formación y asistencia en primeros auxilios para comunidades vulnerables.</p></div>
+    <div class="card"><h3>Apoyo Comunitario</h3><p>Programas de integración social y apoyo a colectivos en riesgo de exclusión.</p></div>
+  </div>
+</section>
+
+<section class="cta">
+  <h2>¿Quieres ser parte del cambio?</h2>
+  <p>Únete a nuestra comunidad de voluntarios y ayuda a transformar vidas</p>
+  <a routerLink="/contacto" class="btn btn-white">Contacta con Nosotros</a>
+</section>
+<style>
+  /* ===== GENERAL ===== */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Poppins', sans-serif;
+    background: #f5f7fb;
+    color: #111827;
+  }
+
+  /* ===== HERO ===== */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .hero-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .hero-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.6);
+  }
+
+  .hero-content {
+    position: absolute;
+    z-index: 2;
+    text-align: center;
+    color: white;
+    max-width: 850px;
+    padding: 20px;
+  }
+
+  .hero-content h1 {
+    font-size: 65px;
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 25px;
+  }
+
+  .hero-content p {
+    font-size: 20px;
+    line-height: 1.7;
+    margin-bottom: 35px;
+    opacity: 0.95;
+  }
+
+  .hero-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+  }
+
+  /* ===== BOTONES ===== */
+  .btn {
+    padding: 15px 28px;
+    border-radius: 14px;
+    text-decoration: none;
+    font-weight: 700;
+    font-size: 16px;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-red {
+    background: #cc0000;
+    color: white;
+    box-shadow: 0 8px 20px rgba(204,0,0,0.25);
+  }
+
+  .btn-red:hover {
+    background: #990000;
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(204,0,0,0.35);
+  }
+
+  .btn-outline {
+    border: 2px solid white;
+    color: white;
+    background: transparent;
+  }
+
+  .btn-outline:hover {
+    background: white;
+    color: #111827;
+    transform: translateY(-3px);
+  }
+
+  .btn-white {
+    background: white;
+    color: #cc0000;
+  }
+
+  .btn-white:hover {
+    background: #f3f4f6;
+    transform: translateY(-3px);
+  }
+
+  /* ===== SERVICES ===== */
+  .services {
+    padding: 90px 20px;
+    text-align: center;
+    background: #f5f7fb;
+  }
+
+  .services h2 {
+    font-size: 42px;
+    margin-bottom: 20px;
+    font-weight: 800;
+    color: #111827;
+  }
+
+  .services-desc {
+    max-width: 750px;
+    margin: auto;
+    margin-bottom: 55px;
+    color: #6b7280;
+    font-size: 18px;
+    line-height: 1.7;
+  }
+
+ .service-cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 280px));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+  justify-content: center;
+}
+
+  .card {
+    background: white;
+    padding: 35px;
+    border-radius: 22px;
+    box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+  }
+
+  .card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 18px 40px rgba(0,0,0,0.12);
+  }
+
+  .card h3 {
+    font-size: 24px;
+    margin-bottom: 18px;
+    color: #cc0000;
+    font-weight: 700;
+  }
+
+  .card p {
+    color: #4b5563;
+    line-height: 1.7;
+    font-size: 16px;
+  }
+
+  /* ===== CTA ===== */
+  .cta {
+    background: linear-gradient(135deg, #cc0000, #990000);
+    color: white;
+    text-align: center;
+    padding: 90px 20px;
+  }
+
+  .cta h2 {
+    font-size: 46px;
+    margin-bottom: 20px;
+    font-weight: 800;
+  }
+
+  .cta p {
+    font-size: 19px;
+    margin-bottom: 35px;
+    opacity: 0.95;
+  }
+
+  /* ===== RESPONSIVE ===== */
+  @media (max-width: 768px) {
+
+    .hero {
+      height: 85vh;
+    }
+
+    .hero-content h1 {
+      font-size: 42px;
+    }
+
+    .hero-content p {
+      font-size: 17px;
+    }
+
+    .services h2,
+    .cta h2 {
+      font-size: 34px;
+    }
+
+    .services-desc,
+    .cta p {
+      font-size: 16px;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .btn {
+      width: 100%;
+      max-width: 320px;
+    }
+  }
+</style>

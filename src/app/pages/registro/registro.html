@@ -1,0 +1,330 @@
+<section class="hero hero-about">
+  <img src="iniciosesion.jpg" alt="Registro" class="hero-img">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Registro de Voluntarios</h1>
+    <p>Completa el formulario para unirte a Socivil España</p>
+  </div>
+</section>
+
+<section class="contact">
+  <div class="contact-container">
+
+    <!-- FORMULARIO -->
+    <div class="contact-form">
+      
+      @if (exito) {
+        <h2 class="success-title">Registro exitoso</h2>
+        <p class="success-text">Tu cuenta ha sido creada correctamente.</p>
+        <a routerLink="/login" class="btn btn-red">Iniciar sesión</a>
+
+      } @else {
+
+        <h2>Crear Cuenta</h2>
+
+        @if (error) {
+          <div class="mensaje-error">
+            ⚠️ {{ error }}
+          </div>
+        }
+
+        <form (ngSubmit)="submit()">
+
+          <input type="text" name="usuario" [(ngModel)]="form.usuario" placeholder="Nombre de usuario" required [disabled]="cargando">
+
+          <input type="text" name="nombre" [(ngModel)]="form.nombre" placeholder="Nombre" required [disabled]="cargando">
+
+          <input type="text" name="apellido" [(ngModel)]="form.apellido" placeholder="Apellido" required [disabled]="cargando">
+
+          <input type="password" name="password" [(ngModel)]="form.password" placeholder="Contraseña" required [disabled]="cargando">
+
+          <input type="email" name="email" [(ngModel)]="form.email" placeholder="Correo electrónico" required [disabled]="cargando">
+
+          <input type="tel" name="telefono" [(ngModel)]="form.telefono" placeholder="Teléfono" required [disabled]="cargando">
+
+          <label>Fecha de nacimiento</label>
+          <input type="date" name="fecha_nacimiento" [(ngModel)]="form.fecha_nacimiento" required [disabled]="cargando">
+
+          @if (!cargando) {
+            <button type="submit" class="btn btn-voluntario">Registrarse</button>
+          } @else {
+            <div class="spinner-container">
+              <div class="dot dot1"></div>
+              <div class="dot dot2"></div>
+              <div class="dot dot3"></div>
+            </div>
+          }
+
+        </form>
+<br>
+        <div class="login-link">
+          <a routerLink="/login">¿Ya tienes cuenta? Inicia sesión</a>
+        </div>
+
+      }
+
+    </div>
+
+    <!-- TEXTO DERECHA -->
+    @if (!exito) {
+      <div class="contact-info">
+        <h2>¿Por qué ser voluntario?</h2>
+         <p>Ser voluntario es una oportunidad para generar un impacto positivo real en la sociedad. Al participar en nuestras actividades, contribuyes directamente a mejorar la vida de otras personas.</p>
+         <p>El voluntariado también es una experiencia de crecimiento personal: te permite adquirir nuevas habilidades, conocer a personas con valores similares y desarrollar la empatía y el compromiso social.</p>
+      </div>
+    }
+
+  </div>
+</section>
+<style>
+
+/* ===== GENERAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f7fb;
+  color: #111827;
+  text-align: center;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 2;
+  color: white;
+  max-width: 850px;
+  padding: 20px;
+
+  /* 🔥 CENTRADO REAL */
+  text-align: center;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.hero-content h1 {
+  font-size: 65px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+.hero-content p {
+  font-size: 20px;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+/* ===== CONTACT LAYOUT (REUTILIZADO) ===== */
+.contact {
+  padding: 90px 20px;
+  background: #f5f7fb;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  align-items: start;
+}
+
+/* ===== FORM CARD ===== */
+.contact-form {
+  background: white;
+  padding: 40px;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  text-align: left;
+}
+
+.contact-form h2 {
+  font-size: 32px;
+  margin-bottom: 25px;
+  font-weight: 800;
+}
+
+/* inputs */
+.contact-form input {
+  width: 100%;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  font-size: 15px;
+  transition: 0.3s;
+  outline: none;
+}
+
+.contact-form input:focus {
+  border-color: #cc0000;
+  box-shadow: 0 0 0 3px rgba(204,0,0,0.15);
+}
+
+/* labels */
+.contact-form label {
+  display: block;
+  margin: 10px 0 6px;
+  font-weight: 600;
+  color: #4b5563;
+}
+
+/* ===== BOTÓN REGISTRO ===== */
+.btn {
+  padding: 15px 28px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 16px;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.btn-voluntario {
+  background: #cc0000;
+  color: white;
+  width: 100%;
+  box-shadow: 0 8px 20px rgba(204,0,0,0.25);
+}
+
+.btn-voluntario:hover {
+  background: #990000;
+  transform: translateY(-3px);
+}
+
+/* ===== ERROR ===== */
+.mensaje-error {
+  background: #ffe5e5;
+  color: #b00020;
+  padding: 12px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+  font-weight: 600;
+}
+
+/* ===== SUCCESS ===== */
+.success-title {
+  font-size: 30px;
+  font-weight: 800;
+  color: #16a34a;
+  margin-bottom: 10px;
+}
+
+.success-text {
+  color: #4b5563;
+  margin-bottom: 20px;
+}
+
+/* ===== LOGIN LINK ===== */
+.login-link {
+  margin-top: 15px;
+}
+
+.login-link a {
+  color: #cc0000;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* ===== INFO RIGHT CARD ===== */
+.contact-info {
+  background: white;
+  padding: 40px;
+  border-radius: 22px;
+  box-shadow: 0 12px 30px rgba(0,0,0,0.08);
+  text-align: left;
+}
+
+.contact-info h2 {
+  font-size: 28px;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.contact-info p {
+  color: #4b5563;
+  line-height: 1.8;
+  margin-bottom: 12px;
+}
+
+/* ===== SPINNER ===== */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  gap: 6px;
+  padding: 20px;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  background: #cc0000;
+  border-radius: 50%;
+  animation: bounce 0.6s infinite alternate;
+}
+
+.dot2 { animation-delay: 0.2s; }
+.dot3 { animation-delay: 0.4s; }
+
+@keyframes bounce {
+  from { transform: translateY(0); opacity: 0.6; }
+  to { transform: translateY(-10px); opacity: 1; }
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+
+  .hero {
+    height: 85vh;
+  }
+
+  .hero-content h1 {
+    font-size: 42px;
+  }
+
+  .hero-content p {
+    font-size: 17px;
+  }
+
+  .contact-container {
+    grid-template-columns: 1fr;
+  }
+
+  .contact-form,
+  .contact-info {
+    text-align: center;
+  }
+}
+
+</style>

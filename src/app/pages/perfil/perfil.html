@@ -1,0 +1,390 @@
+<section class="contact">
+
+  <style>
+    /* ===== SECCIÓN PERFIL ===== */
+    .contact {
+      width: 100%;
+      min-height: 100vh;
+      background: #f4f7fb;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 40px 20px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .contact-container {
+      width: 100%;
+      max-width: 1100px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 30px;
+    }
+
+    /* ===== TARJETAS ===== */
+    .contact-form,
+    .contact-info {
+      background: #fff;
+      border-radius: 20px;
+      padding: 35px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+    }
+
+    /* ===== TITULOS ===== */
+    .contact-form h2,
+    .contact-info h2 {
+      font-size: 28px;
+      margin-bottom: 25px;
+      color: #222;
+      font-weight: 700;
+    }
+
+    /* ===== FOTO PERFIL ===== */
+    .profile-image {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 4px solid #cc0000;
+      margin-bottom: 20px;
+      transition: 0.3s;
+    }
+
+    .profile-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* ===== INPUTS ===== */
+    .contact-form input {
+      width: 100%;
+      padding: 14px 16px;
+      margin-bottom: 18px;
+      border: 1px solid #ddd;
+      border-radius: 12px;
+      outline: none;
+      font-size: 15px;
+      transition: 0.3s;
+      background: #fafafa;
+      box-sizing: border-box;
+    }
+
+    .contact-form input:focus {
+      border-color: #4f46e5;
+      background: #fff;
+      box-shadow: 0 0 0 4px rgba(79,70,229,0.1);
+    }
+
+    /* ===== LABEL ===== */
+    .contact-form label {
+      display: block;
+      margin-bottom: 8px;
+      color: #555;
+      font-size: 14px;
+      font-weight: 500;
+    }
+
+    /* ===== BOTONES ===== */
+    .buttons {
+      display: flex;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .btn {
+      flex: 1;
+      padding: 14px;
+      border: none;
+      border-radius: 12px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: 600;
+      transition: 0.3s;
+    }
+
+    /* Guardar */
+   /* Guardar cambios */
+/* Guardar cambios */
+.btn-voluntario {
+  background: #cc0000;
+  color: white;
+}
+
+.btn-voluntario:hover {
+  background: #990000;
+  transform: translateY(-2px);
+}
+
+/* Cerrar sesión */
+.btn-voluntario-sesion {
+  background: #6b7280;
+  color: white;
+}
+
+.btn-voluntario-sesion:hover {
+  background: #4b5563;
+  transform: translateY(-2px);
+}
+
+    /* ===== MENSAJE EXITO ===== */
+    .success-message {
+      background: #dcfce7;
+      color: #166534;
+      padding: 12px;
+      border-radius: 10px;
+      margin-bottom: 20px;
+      font-weight: 600;
+      text-align: center;
+    }
+
+    /* ===== INFO ===== */
+    .contact-info p {
+      margin-bottom: 15px;
+      font-size: 16px;
+      color: #444;
+      line-height: 1.5;
+    }
+
+    .contact-info strong {
+      color: #111;
+    }
+    /* ===== DIVIDER ===== */
+.divider {
+  margin: 25px 0;
+  border: none;
+  border-top: 1px solid #e5e7eb;
+}
+
+/* ===== CABECERA BUZÓN ===== */
+.mailbox-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+
+.mailbox-header h3 {
+  margin: 0;
+  font-size: 22px;
+  color: #222;
+}
+
+/* ===== BADGE ===== */
+.badge {
+  background: #cc0000;
+  color: white;
+  border-radius: 50%;
+  min-width: 28px;
+  height: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-weight: bold;
+}
+
+/* ===== TARJETAS MENSAJES ===== */
+.mail-card {
+  border: 1px solid #e5e7eb;
+  padding: 14px;
+  border-radius: 12px;
+  margin-bottom: 14px;
+  background: #fafafa;
+  transition: 0.3s;
+}
+
+.mail-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+}
+
+.mail-card strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #111;
+  font-size: 16px;
+}
+
+.mail-card p {
+  margin: 0;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* ===== VACÍO ===== */
+.empty-mailbox {
+  text-align: center;
+  padding: 30px;
+  background: #f3f4f6;
+  border-radius: 12px;
+  color: #777;
+  font-size: 15px;
+}
+
+/* ===== BOTÓN VER BUZÓN ===== */
+.ver-buzon {
+  width: 100%;
+  margin-top: 10px;
+}
+.profile-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 120px;
+  margin-bottom: 20px;
+}
+
+/* Spinner */
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 5px solid #e5e7eb;
+  border-top: 5px solid #cc0000;
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 850px) {
+      .contact-container {
+        grid-template-columns: 1fr;
+      }
+
+      .buttons {
+        flex-direction: column;
+      }
+    }
+  </style>
+
+  <div class="contact-container">
+
+    <!-- FORMULARIO -->
+    <div class="contact-form">
+      <h2>Mi Perfil</h2>
+
+      @if (exito) {
+        <p class="success-message">{{ exito }}</p>
+      }
+
+   <div class="profile-wrapper" style="text-align: center;">
+
+  @if (cargandoImagen) {
+
+    <div class="spinner"></div>
+
+  } @else {
+
+    <img
+      [src]="imageUrl !== '' ? imageUrl : '/default-avatar.png'"
+      class="profile-image">
+
+  }
+
+</div>
+
+      <input type="text" [(ngModel)]="form.nombre" placeholder="Nombre" required>
+
+      <input type="text" [(ngModel)]="form.apellido" placeholder="Apellido">
+
+      <input type="email" [(ngModel)]="form.email" placeholder="Email" required>
+
+      <input type="text" [(ngModel)]="form.telefono" placeholder="Teléfono">
+
+      <input type="date" [(ngModel)]="form.fecha_nacimiento">
+
+      <label>Cambiar foto de perfil</label>
+
+      <input type="file" (change)="onFoto($event)" accept="image/*">
+
+      <div class="buttons">
+        <button class="btn btn-voluntario" (click)="guardar()">
+          Guardar cambios
+        </button>
+
+        <button class="btn btn-voluntario-sesion" (click)="logout()">
+          Cerrar Sesión
+        </button>
+      </div>
+    </div>
+
+    <!-- INFO -->
+    <!-- INFO -->
+<div class="contact-info">
+
+  <h2>Tus datos</h2>
+
+  <p><strong>Usuario:</strong> {{ auth.user()?.usuario }}</p>
+
+  <p>
+    <strong>Nombre:</strong>
+    {{ auth.user()?.nombre }} {{ auth.user()?.apellido }}
+  </p>
+
+  <p><strong>Email:</strong> {{ auth.user()?.email }}</p>
+
+  <p><strong>Teléfono:</strong> {{ auth.user()?.telefono }}</p>
+
+  <p>
+    <strong>Fecha de nacimiento:</strong>
+    {{ auth.user()?.fecha_nacimiento }}
+  </p>
+
+  <!-- =======================
+       BUZÓN
+  ======================== -->
+
+  <hr class="divider">
+
+  <div class="mailbox-header">
+
+    <h3>📬 Buzón</h3>
+
+    @if (noLeidos > 0) {
+      <span class="badge">
+        {{ noLeidos }}
+      </span>
+    }
+
+  </div>
+
+  @if (mensajes.length > 0) {
+
+    @for (msg of mensajes.slice(0,3); track msg.id) {
+
+      <div class="mail-card">
+
+        <strong>{{ msg.titulo }}</strong>
+
+        <p>{{ msg.descripcion }}</p>
+
+      </div>
+
+    }
+
+<button
+  class="btn btn-voluntario ver-buzon"
+  routerLink="/buzon">
+
+  Ver todo el buzón
+
+</button>
+
+  } @else {
+
+    <div class="empty-mailbox">
+      No tienes mensajes todavía.
+    </div>
+
+  }
+
+</div>
+  </div>
+</section>

@@ -1,0 +1,218 @@
+<section class="hero hero-about">
+  <img src="iniciosesion.jpg" alt="Recuperar" class="hero-img">
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <h1>Recuperar Contraseña</h1>
+    <p>Te enviaremos una contraseña temporal a tu correo</p>
+  </div>
+</section>
+
+<section class="recover">
+  <div class="recover-container">
+
+    <div class="recover-card">
+      <h2>Recuperar contraseña</h2>
+
+      @if (ok) {
+        <div class="mensaje-ok">
+          ✅ Te hemos enviado una contraseña temporal a tu correo electrónico.
+        </div>
+      }
+
+      @if (error) {
+        <div class="mensaje-error">
+          ⚠️ {{ error }}
+        </div>
+      }
+
+      <form (ngSubmit)="submit()">
+
+        <input 
+          type="email" 
+          name="email"
+          [(ngModel)]="email" 
+          placeholder="Introduce tu correo" 
+          required
+        >
+
+        <button type="submit" class="btn btn-red">
+          Enviar contraseña temporal
+        </button>
+
+      </form>
+
+      <div class="login-link">
+        <a routerLink="/login">← Volver al login</a>
+      </div>
+
+    </div>
+
+  </div>
+</section>
+
+<style>
+/* ===== GENERAL ===== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #f5f7fb;
+  color: #111827;
+  text-align: center;
+}
+
+/* ===== HERO ===== */
+.hero {
+  position: relative;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+}
+
+.hero-content {
+  position: absolute;
+  z-index: 2;
+  text-align: center;
+  color: white;
+  max-width: 850px;
+  padding: 20px;
+}
+
+.hero-content h1 {
+  font-size: 60px;
+  font-weight: 800;
+  margin-bottom: 20px;
+}
+
+.hero-content p {
+  font-size: 20px;
+  opacity: 0.95;
+  line-height: 1.6;
+}
+
+/* ===== RECOVER ===== */
+.recover {
+  padding: 90px 20px;
+  background: #f5f7fb;
+}
+
+.recover-container {
+  display: flex;
+  justify-content: center;
+}
+
+.recover-card {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 25px;
+  box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 520px;
+  text-align: center;
+}
+
+.recover-card h2 {
+  font-size: 34px;
+  font-weight: 800;
+  margin-bottom: 25px;
+}
+
+/* inputs */
+.recover-card input {
+  width: 100%;
+  padding: 15px;
+  margin-bottom: 20px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  font-size: 16px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.recover-card input:focus {
+  border-color: #cc0000;
+}
+
+/* botones */
+.btn {
+  padding: 15px 25px;
+  border-radius: 14px;
+  font-weight: 700;
+  border: none;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn-red {
+  background: #cc0000;
+  color: white;
+  width: 100%;
+}
+
+.btn-red:hover {
+  background: #a80000;
+  transform: translateY(-2px);
+}
+
+/* mensajes */
+.mensaje-ok {
+  background: #e8f7ee;
+  color: #166534;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+.mensaje-error {
+  background: #fde8e8;
+  color: #991b1b;
+  padding: 15px;
+  border-radius: 12px;
+  margin-bottom: 15px;
+}
+
+/* link login */
+.login-link {
+  margin-top: 20px;
+}
+
+.login-link a {
+  color: #cc0000;
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.login-link a:hover {
+  text-decoration: underline;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 40px;
+  }
+
+  .recover-card {
+    padding: 35px 25px;
+  }
+}
+</style>

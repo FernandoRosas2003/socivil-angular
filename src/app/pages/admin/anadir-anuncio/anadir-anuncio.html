@@ -1,0 +1,139 @@
+<section class="admin-page">
+
+  <div class="admin-box">
+
+    <h2>📢 Añadir anuncio</h2>
+    @if (usuarios.length === 0) {
+  <div class="empty-box">
+    No hay usuarios registrados actualmente
+  </div>
+} @else {
+<select [(ngModel)]="usuarioSeleccionado">
+
+  <option [ngValue]="null" disabled>
+    Selecciona un usuario
+  </option>
+
+  <!-- TODOS -->
+  <option [ngValue]="-1">
+  Todos los usuarios
+  </option>
+
+  @for (u of usuarios; track u.id) {
+
+    <option [ngValue]="u.id">
+      {{ u.nombre }} - {{ u.email }}
+    </option>
+
+  }
+
+</select>
+
+}
+    @if (exito) {
+      <div class="success">
+        {{ exito }}
+      </div>
+    }
+
+    <input
+      type="text"
+      [(ngModel)]="titulo"
+      placeholder="Título del anuncio">
+
+    <textarea
+      [(ngModel)]="descripcion"
+      placeholder="Descripción del anuncio"></textarea>
+
+    <button (click)="publicar() " class="btn btn-red back-btn">
+      Publicar anuncio
+    </button>
+
+    <button routerLink="/admin" class="volver">
+      Volver
+    </button>
+
+  </div>
+
+</section>
+
+<style>
+select {
+  width: 100%;
+  padding: 14px;
+  margin-bottom: 15px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  background: white;
+}
+.admin-page{
+  width:100%;
+  min-height:100vh;
+  background:#f4f7fb;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  padding:20px;
+}
+
+.admin-box{
+  width:100%;
+  max-width:700px;
+  background:white;
+  padding:30px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.08);
+}
+
+.admin-box h2{
+  margin-bottom:20px;
+}
+
+input,
+textarea{
+  width:100%;
+  padding:14px;
+  margin-bottom:15px;
+  border-radius:12px;
+  border:1px solid #ddd;
+  box-sizing:border-box;
+}
+
+textarea{
+  min-height:180px;
+  resize:none;
+}
+
+button{
+  width:100%;
+  padding:14px;
+  border:none;
+  border-radius:12px;
+  background:#cc0000;
+  color:white;
+  font-weight:600;
+  cursor:pointer;
+  margin-bottom:10px;
+}
+
+button:hover{
+  background:#990000;
+}
+
+.volver{
+  background:#6b7280;
+}
+
+.volver:hover{
+  background:#4b5563;
+}
+
+.success{
+  background:#dcfce7;
+  color:#166534;
+  padding:12px;
+  border-radius:10px;
+  margin-bottom:15px;
+}
+
+</style>
