@@ -6,7 +6,7 @@ import { HttpHeaders } from '@angular/common/http';
 @Injectable({ providedIn: 'root' })
 export class ApiService {
   private base_old = 'http://127.0.0.1:8000/api';
-  private base = 'http://13.37.207.144:8000/api';
+  private base = 'https://api.socivil.org/api';
 
   constructor(private http: HttpClient) {}
 

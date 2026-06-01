@@ -17,7 +17,7 @@ export interface User {
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
-   private base = 'http://13.37.207.144:8000/api';
+   private base = 'https://api.socivil.org/api';
   private baseOld = 'http://127.0.0.1:8000/api';
 
   // Inicializamos los signals tratando de leer del localStorage para evitar el "salto" de sesión en el F5

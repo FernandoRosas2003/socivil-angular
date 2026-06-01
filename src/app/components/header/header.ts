@@ -41,7 +41,7 @@ cargarImagen(ruta: string) {
   const token = localStorage.getItem('token');
 
   this.http.get(
-    `http://13.37.207.144:8000/api/fotos/${ruta}`,
+    `https://api.socivil.org/api/fotos/${ruta}`,
     {
       headers: new HttpHeaders({
         Authorization: `Bearer ${token}`
