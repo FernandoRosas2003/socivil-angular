@@ -1,9 +1,10 @@
-import { ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnInit, effect } from '@angular/core';
 import { RouterLink, RouterLinkActive } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from '../../services/auth.service';
 import { AnunciosService } from '../../services/anuncios.service';
+
 
 @Component({
   selector: 'app-header',
@@ -17,22 +18,44 @@ export class Header implements OnInit {
   cargandoImagen = false;
   noLeidos : number = 0;
 
-  constructor(public auth: AuthService, private http: HttpClient, private cdr: ChangeDetectorRef, public anuncioService : AnunciosService) {}
+  constructor(
+  public auth: AuthService,
+  private http: HttpClient,
+  private cdr: ChangeDetectorRef,
+  public anuncioService: AnunciosService
+) {
 
-  ngOnInit() {
-     this.anuncioService.noLeidos$.subscribe({
-      next: (cantidad) => {
-        this.noLeidos = cantidad;
-      }
-    });
+effect(() => {
 
-    // Cargar desde backend una sola vez
-    this.anuncioService.getNoLeidos().subscribe();
-    const foto = this.auth.user()?.foto;
-    if (foto) {
-      this.cargarImagen(foto);
-    }
+  const usuario = this.auth.user();
+
+  if (!usuario) {
+    this.imageUrl = '';
+    return;
   }
+
+  if (usuario.foto) {
+    this.cargarImagen(usuario.foto);
+  }
+
+});
+
+}
+
+ ngOnInit() {
+
+  if (this.auth.isAdmin()) {
+    return;
+  }
+
+  this.anuncioService.noLeidos$.subscribe({
+    next: (cantidad) => {
+      this.noLeidos = cantidad;
+    }
+  });
+
+  this.anuncioService.getNoLeidos().subscribe();
+}
 
 cargarImagen(ruta: string) {
 

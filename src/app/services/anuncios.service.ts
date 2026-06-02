@@ -3,6 +3,7 @@ import { ApiService } from './api.service';
 import { HttpHeaders } from '@angular/common/http';
 import { map, tap } from 'rxjs/operators';
 import { BehaviorSubject, Observable } from 'rxjs';
+import { of } from 'rxjs';
 
 export interface Anuncio {
   id: number;
@@ -72,16 +73,19 @@ export class AnunciosService {
   }
 
    getNoLeidos(): Observable<number> {
-     const token = localStorage.getItem('token');
-     return this.api.get<number>(`/anuncios-no-leidos`, token ?? undefined)
-      .pipe(
-        tap
-        ((cantidad) => {
-          this.noLeidosSubject.next(cantidad);
-        })
-      );
+  const token = localStorage.getItem('token');
+  if (!token) {
+    return of(0);
   }
-
+  return this.api.get<number>(
+    '/anuncios-no-leidos',
+    token
+  ).pipe(
+    tap(cantidad => {
+      this.noLeidosSubject.next(cantidad);
+    })
+  );
+}
   actualizarNoLeidos(cantidad: number): void {
     this.noLeidosSubject.next(cantidad);
   }
